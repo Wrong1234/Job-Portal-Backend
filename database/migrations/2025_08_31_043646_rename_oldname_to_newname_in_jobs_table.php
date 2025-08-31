@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::table('applications', function (Blueprint $table) {
-            $table->foreignId('payment_id')->after('user_id')->nullable()->constrained('payments')->onDelete('set null');
+        Schema::table('jobs', function (Blueprint $table) {
+             $table->renameColumn('user_id', 'recruiter_id');
         });
     }
 
@@ -21,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('applications', function (Blueprint $table) {
-            $table->dropForeign(['payment_id']);
-            $table->dropColumn('payment_id');
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->renameColumn('recruiter_id', 'user_id');
         });
     }
 };

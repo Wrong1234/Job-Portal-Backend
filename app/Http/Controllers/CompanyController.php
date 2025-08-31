@@ -15,7 +15,7 @@ class CompanyController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $companies
+            'data'    => $companies
         ]);
     }
 
@@ -23,11 +23,11 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
             'description' => 'nullable|string|max:2000',
-            'address' => 'nullable|string|max:500',
-            'phone' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:255|unique:companies',
+            'address'     => 'nullable|string|max:500',
+            'phone'       => 'nullable|string|max:20',
+            'email'       => 'nullable|email|max:255|unique:companies',
         ]);
 
         $company = Company::create($validated);
@@ -35,7 +35,7 @@ class CompanyController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Company created successfully.',
-            'data' => $company
+            'data'    => $company
         ], 201);
     }
 
@@ -53,7 +53,7 @@ class CompanyController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $company
+            'data'    => $company
         ]);
     }
 
@@ -70,11 +70,11 @@ class CompanyController extends Controller
         }
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name'        => 'required|string|max:255',
             'description' => 'nullable|string|max:2000',
-            'address' => 'nullable|string|max:500',
-            'phone' => 'nullable|string|max:20',
-            'email' => ['nullable', 'email', 'max:255', Rule::unique('companies')->ignore($company->id)],
+            'address'     => 'nullable|string|max:500',
+            'phone'       => 'nullable|string|max:20',
+            'email'       => ['nullable', 'email', 'max:255', Rule::unique('companies')->ignore($company->id)],
         ]);
 
         $company->update($validated);
@@ -82,7 +82,7 @@ class CompanyController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Company updated successfully.',
-            'data' => $company
+            'data'    => $company
         ]);
     }
 

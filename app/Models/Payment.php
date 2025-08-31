@@ -15,6 +15,7 @@ class Payment extends Model
         'amount',
         'stripe_payment_id',
         'status',
+        'job_id'
     ];
 
     protected $casts = [

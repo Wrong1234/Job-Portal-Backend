@@ -13,22 +13,39 @@ class PaymentController extends Controller
 {
     public function createCheckout(Request $request)
     {
+       
 
         $request->validate([
-            'job_id'  => 'required|exists:jobs,id',         
-            'amount'  => 'required|numeric|min:1',         
+            'job_id'    => 'required|exists:jobs,id',         
+            'amount'    => 'required|numeric|min:1',         
             'upload_cv' => 'required|file|max:20480',       
         ]);
 
-        $user = Auth::user();
-        $jobId = $request->job_id;
-        $amount = $request->amount; 
+        $user    = Auth::user();
+        $jobId   = $request->job_id;
+        $amount  = $request->amount; 
         $cv_path = $request->upload_cv;
 
         $stripe_payment_id = rand(100000, 999999);
+        
+        $existingPayment = Payment::where('user_id', $user->id)
+            ->where('job_id', $jobId)
+            ->whereIn('status', ['pending', 'completed']) 
+            ->first();
+
+        if ($existingPayment) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You have already applied to this job.',
+                'data'    => 'mahabuir'
+            ], 400); 
+        }
+        // return response()->json([
+        //     'data' => $jobId,
+        // ]);
         $payment = Payment::create([
             'user_id' => $user->id,
-            'job_id' => $jobId,
+            'job_id' => $request->job_id,
             'amount' => $amount,
             'status' => 'pending',
             'stripe_payment_id' => $stripe_payment_id,
@@ -67,7 +84,7 @@ class PaymentController extends Controller
     {
         $sessionId = $request->get('session_id');
         return response()->json([
-                'message' => 'Payment completed successfully',
+                'message'    => 'Payment completed successfully',
                 'session_id' => $sessionId
             ]);
     }

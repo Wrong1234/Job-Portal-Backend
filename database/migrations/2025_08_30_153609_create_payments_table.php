@@ -12,7 +12,8 @@ return new class extends Migration
        Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('application_id');
+            $table->unsignedBigInteger('application_id')->nullable();
+            $table->unsignedBigInteger('job_id');
 
             $table->decimal('amount', 10, 2);
             $table->string('stripe_payment_id')->unique();
@@ -22,6 +23,7 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
         });
 
     }
