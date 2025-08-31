@@ -1,61 +1,145 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# HireMe - Job Posting Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive job posting platform built with Laravel where companies can post jobs and job seekers can apply with payment integration.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Role-based Authentication** (Admin, Employee/Recruiter, Job Seeker)
+- **JWT-based Authentication**
+- **Job Management System**
+- **Payment Integration** (Stripe/SSLCommerz)
+- **File Upload** (CV/Resume - PDF, DOCX)
+- **Admin Panel** with analytics
+- **Application Management**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Language**: PHP
+- **Framework**: Laravel
+- **Database**: MySQL
+- **Authentication**: JWT
+- **Payment**: Stripe/SSLCommerz
+- **File Storage**: Local/Cloud storage
 
-## Learning Laravel
+## 📋 Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP >= 8.1
+- Composer
+- MySQL >= 5.7
+- Node.js & npm (for frontend assets)
+- Git
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ⚡ Installation & Setup
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Clone the Repository
+- [https://github.com/Wrong1234/Job-Portal-Backend.git]
+- cd Job-Portal-Backend
 
-## Laravel Sponsors
+### 2. Install Dependencies
+- composer install
+### 3. Environment Configuration
+ - cp .env.example .env
+ - php artisan key:generate
+### 4. Configure Environment Variables
+ - Edit .env file with your database and payment credentials:
+ - envDB_CONNECTION=mysql
+ - DB_HOST=127.0.0.1
+ - DB_PORT=3306
+ - DB_DATABASE=job-portal
+ - DB_USERNAME=root
+ - DB_PASSWORD=""
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+ - JWT_SECRET=1oLj8K7ZKWq4TN4VxPH2kj1iXHRCxdslUivDz60Y9bRXlTzpkxNRJ8LhPNB2MQHA
 
-### Premium Partners
+### Stripe Configuration
+ - STRIPE_SECRET=""
+ - STRIPE_PUBLISHABLE=pk_test_51NcqnPGzVEVR5pGH0pMHML5q6PC3Iv5Q3aDClmJqVcXuSF1oHQ8Q47yO0kJFvGrROuc4e6PPH0WO80Ka3hhANT1p00KpWeuDFx
+ - STRIPE_WEBHOOK_SECRET=whsec_092a7433c9460c4dc45780ad93f33c7edee0c904f20bf3d7a046bd64860f181d
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 5. Database Setup
+ - php artisan migrate
 
-## Contributing
+### 7. Storage Setup
+ - php artisan storage:link
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 8. Start the Server
+ - php artisan serve
+ - The application will be available at http://localhost:8000
 
-## Code of Conduct
+👥 User Roles & Permissions
+## Admin
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+ - Manage all users (create/update/delete)
+ - Manage all jobs
+ - View company analytics
+ - View all applications
 
-## Security Vulnerabilities
+## Employee (Recruiter)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+ - Post/edit/delete jobs for their company
+ - View applicants for their jobs
+ - Accept/reject applications
+ - View applications to their jobs
 
-## License
+## Job Seeker
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ - View job listings
+ - Apply for jobs (with CV upload + 100 Taka payment)
+ - View application history
+ - Cannot apply to same job twice
+
+## API Authentication
+
+  - Authorization: Bearer {your_jwt_token}
+
+## API Endpoints
+### Authentication
+ - POST   /api/v1/register          # User registration
+ - POST   /api/v1/login             # User login
+ - POST   /api/v1/logout            # User logout
+   
+### User Management (Admin Only)
+- GET    /api/v1/users            # Get all users
+- POST   /api/v1/users            # Create new user
+- PUT    /api/v1/users/{id}       # Update user
+- DELETE /api/v1/users/{id}       # Delete user
+  
+### Job Management
+ - GET    /api/v1/jobs                   # Get all jobs (public)
+ - POST   /api/v1/jobs                   # Create job (Employee only)
+ - GET    /api/v1/jobs/{id}              # Get specific job
+ - PUT    /api/v1/jobs/{id}              # Update job (Employee - own jobs only)
+ - DELETE /api/v1/jobs/{id}              # Delete job (Employee - own jobs only)
+
+### Applications
+ - GET    /api/v1/applications           # Get user's applications (Job Seeker)
+ - POST   /api/jobs/{id}/apply           # Apply for job (Job Seeker)
+ - GET    /api/v1/applications           # Get job applications (Employee and admin)
+ - PUT    /{jobId}/{applicationId}       # Accept/reject application (Employee)
+
+### Admin Analytics
+ - GET    /api/v1/users/analytics        # Get platform analytics(Employee and Admin)
+   
+### Companies
+ - GET    /api/v1/companies             # Get all companies
+ - POST   /api/v1/applications          # Get all applications
+ - PUT   /api/v1/applications/{id}      # Get all applications
+ - GET   /api/v1/applications/{id}      # Get all applications
+ - DELETE   /api/v1/applications/{id}   # Get all applications
+
+### Payment
+POST   /api/v1/jobs/payment         # Create payment intent
+POST   api/v1/stripe/webhook'       # Confirm payment
+GET    /api/v1/payments/success     # Get user invoices
+
+### Payment Flow
+
+ - Job Seeker selects a job to apply for
+ - Upload CV/Resume (PDF or DOCX, max 50MB)
+ - Payment Processing:
+
+ - Create payment intent for 100 Taka
+ - Redirect to Stripe/SSLCommerz payment page
+ - Handle payment confirmation webhook
+
+
