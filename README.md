@@ -128,9 +128,9 @@ A comprehensive job posting platform built with Laravel where companies can post
  - DELETE   /api/v1/applications/{id}   # Get all applications
 
 ### Payment
-POST   /api/v1/jobs/payment         # Create payment intent
-POST   api/v1/stripe/webhook'       # Confirm payment
-GET    /api/v1/payments/success     # Get user invoices
+ - POST   /api/v1/jobs/payment         # Create payment intent
+ - POST   api/v1/stripe/webhook'       # Confirm payment
+ - GET    /api/v1/payments/success     # Get user invoices
 
 ### Payment Flow
 
