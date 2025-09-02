@@ -18,15 +18,14 @@ A comprehensive job posting platform built with Laravel where companies can post
 - **Framework**: Laravel
 - **Database**: MySQL
 - **Authentication**: JWT
-- **Payment**: Stripe/SSLCommerz
-- **File Storage**: Local/Cloud storage
+- **Payment**: Stripe
+- **File Storage**: Local
 
 ## 📋 Prerequisites
 
 - PHP >= 8.1
 - Composer
 - MySQL >= 5.7
-- Node.js & npm (for frontend assets)
 - Git
 
 ## ⚡ Installation & Setup
@@ -121,11 +120,11 @@ A comprehensive job posting platform built with Laravel where companies can post
  - GET    /api/v1/users/analytics        # Get platform analytics(Employee and Admin)
    
 ### Companies
- - GET    /api/v1/companies             # Get all companies
- - POST   /api/v1/applications          # Get all applications
- - PUT   /api/v1/applications/{id}      # Get all applications
- - GET   /api/v1/applications/{id}      # Get all applications
- - DELETE   /api/v1/applications/{id}   # Get all applications
+ - GET      /api/v1/companies              # Get all companies
+ - POST     /api/v1/applications           # Get all applications
+ - PUT      /api/v1/applications/{id}      # Get all applications
+ - GET      /api/v1/applications/{id}      # Get all applications
+ - DELETE   /api/v1/applications/{id}      # Get all applications
 
 ### Payment
  - POST   /api/v1/jobs/payment         # Create payment intent
@@ -139,7 +138,7 @@ A comprehensive job posting platform built with Laravel where companies can post
  - Payment Processing:
 
  - Create payment intent for 100 Taka
- - Redirect to Stripe/SSLCommerz payment page
+ - Redirect to Stripe payment page
  - Handle payment confirmation webhook
 
 
