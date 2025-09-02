@@ -58,9 +58,9 @@ class PaymentController extends Controller
             'mode' => 'payment',
             'line_items' => [[
                 'price_data' => [
-                    'currency' => env('STRIPE_CURRENCY', 'usd'),
+                    'currency' => env('STRIPE_CURRENCY', 'bdt'),
                     'product_data' => ['name' => "Job application fee"],
-                    'unit_amount' => (int) (100 * 100), 
+                    'unit_amount' => (int) ($amount), 
                 ],
                 'quantity' => 1,
             ]],

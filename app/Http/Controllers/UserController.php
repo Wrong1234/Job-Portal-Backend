@@ -110,16 +110,14 @@ class UserController extends Controller
             'token'   => $token,
         ]);
     }
-
-    public function destroy($id)
+    public function destroy()
     {
-        $user = User::findOrFail($id);
+            JWTAuth::invalidate(JWTAuth::getToken());
 
-        $user->delete();
-        return response()->json([
-            'success' => true, 
-            'message' => 'User deleted successfully.'
-        ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'User logged out successfully.'
+            ]);
     }
 
     protected function respondWithToken($token, $jwtGuard, $credentials)
